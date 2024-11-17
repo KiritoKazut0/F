@@ -2,6 +2,7 @@ import './verifyCode.css'
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import Decoration from '../../UI/decoration/decoration'
 import IconBtn from '../../UI/IconBtn/iconBtn';
 import TextLogo from '../../UI/textLogo/textLogo';
 import Input from '../../UI/Input/Input';
@@ -22,6 +23,7 @@ export default function VerifyCode() {
 
     return (
         <div className={`VerifyCodeClass ${theme === 'dark' && 'darkVerifyCodeClass'}`}>
+            <Decoration />
             <TextLogo />
             <IconBtn onClick={toggleTheme} icon={theme === 'light' ? <CiLight /> : <CiDark />} customClass="themeCust" />
             <form onSubmit={handleSubmit(submitForm)}>

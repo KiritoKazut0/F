@@ -2,6 +2,7 @@ import TextLogo from '../../UI/textLogo/textLogo';
 import React from 'react';
 import IconBtn from '../../UI/IconBtn/iconBtn';
 import Input from '../../UI/Input/Input';
+import Decoration from '../../UI/decoration/decoration';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { ThemeCtx } from '../../utils/ThemeCtx';
@@ -20,6 +21,7 @@ export default function NewPassword() {
     const passwordConfirm = watch('passComf');
     return (
         <div className={`NewPasswordClass ${theme === 'white' ? 'whitePass' : 'darkPass'}`}>
+            <Decoration />
             <TextLogo />
             <IconBtn customClass='themeCust' onClick={toggleTheme} icon={theme === 'light' ? <CiLight /> : <CiDark />} />
             <form onSubmit={handleSubmit(submitForm)} className='newPassForm'>

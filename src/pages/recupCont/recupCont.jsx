@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { ThemeCtx } from '../../utils/ThemeCtx';
+import Decoration from '../../UI/decoration/decoration';
 import IconBtn from '../../UI/IconBtn/iconBtn';
 import TextLogo from '../../UI/textLogo/textLogo';
 import Input from '../../UI/Input/Input';
@@ -18,6 +19,7 @@ export default function RecupCont() {
     };
     return (
         <div className='RecupContClass'>
+            <Decoration />
             <TextLogo />
             <IconBtn onClick={toggleTheme} icon={theme === 'light' ? <CiLight /> : <CiDark />} customClass="themeCust" />
             <form className='forgotForm' onSubmit={handleSubmit(onSubmit)}>
