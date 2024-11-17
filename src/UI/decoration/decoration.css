@@ -1,0 +1,32 @@
+.Decoration {
+    position: absolute;
+    overflow: hidden;
+    height: 90%;
+    bottom: 0px;
+    right: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.Decoration .alga1 {
+    width: 500px;
+    position: relative;
+    left: 15%;
+    bottom: -40%;
+    transform: scaleX(-1);
+}
+
+.Decoration .alga2 {
+    width: 500px;
+    position: relative;
+    right: -5%;
+    bottom: -35%;
+}
+
+.Decoration p {
+    font-size: 50px;
+    position: absolute;
+    top: 10%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}

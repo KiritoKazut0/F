@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import TextLogo from '../../UI/textLogo/textLogo';
 import Loader from '../../UI/Loader/loader';
+import Decoration from '../../UI/decoration/decoration';
 import { useState } from 'react';
 
 export default function Register() {
@@ -39,6 +40,7 @@ export default function Register() {
             {loader && <Loader />}
             <IconBtn onClick={toggleTheme} icon={theme === 'light' ? <CiLight /> : <CiDark />} customClass="themeCust"/>
             <TextLogo />
+            <Decoration />
             <form className='RegisterForm' onSubmit={handleSubmit(onSubmit)}>
                 <div className='formContainer'>
                     <h3 style={{ color: "#8d8d8d" }}>¡Bienvenido!</h3>

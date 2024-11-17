@@ -12,6 +12,7 @@ import { ThemeCtx } from '../../utils/ThemeCtx';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import Loader from '../../UI/Loader/loader';
+import Decoration from '../../UI/decoration/decoration';
 
 export default function Login() {
     const [loader, setLoader] = useState(false);
@@ -52,8 +53,7 @@ export default function Login() {
             {loader && <Loader />}
             <IconBtn onClick={toggleTheme} icon={theme === 'light' ? <CiLight /> : <CiDark />} customClass="themeCust" />
             <TextLogo />
-            <div className='Decoration'>
-            </div>
+            <Decoration />
             <form className='LoginForm' onSubmit={handleSubmit(onSubmit)}>
                 <div className='formContainer'>
                     <h3 style={{ color: "#8d8d8d" }}>¡Bienvenido!</h3>
@@ -97,7 +97,7 @@ export default function Login() {
                     <p className='link'>
                         <a href='/register'>¿Todavía no tienes una cuenta? Registrate</a>
                     </p>
-                    { notFound && <p className='nS' style={{color: '#ff4747', fontSize: '16px'}}>Credenciales incorrectas</p> }
+                    {notFound && <p className='nS' style={{ color: '#ff4747', fontSize: '16px' }}>Credenciales incorrectas</p>}
                 </div>
             </form>
         </div>
