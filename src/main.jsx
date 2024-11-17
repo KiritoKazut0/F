@@ -6,6 +6,8 @@ import Login from './pages/login/login';
 import Dashboard from './pages/dashboard/dashboard';
 import Register from './pages/register/register';
 import RecupCont from './pages/recupCont/recupCont';
+import NewPassword from './pages/newPassword/newPassword';
+import VerifyCode from './pages/verifyCode/verifyCode';
 import { ThemeProvider } from './utils/ThemeCtx';
 import './index.css';
 
@@ -27,8 +29,12 @@ const router = createBrowserRouter([
     element: <VeryfyUser element={<Dashboard />} route='/'/>,
   }, 
   {
-    path: '/page1',
-    element: <h1>Page 1</h1>,
+    path: '/newPassword',
+    element: <NewPassword />,
+  },
+  {
+    path: '/verifyCode',
+    element: <VerifyCode />,
   }
 ]);
 
