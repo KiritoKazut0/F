@@ -12,7 +12,7 @@ import { ThemeCtx } from '../../utils/ThemeCtx';
 export default function VerifyCode() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { theme, toggleTheme } = useContext(ThemeCtx);
-
+    
     const submitForm = (data) => {
         console.log(data);
     }

@@ -1,3 +1,4 @@
+import './newPassword.css';
 import TextLogo from '../../UI/textLogo/textLogo';
 import React from 'react';
 import IconBtn from '../../UI/IconBtn/iconBtn';
@@ -9,14 +10,10 @@ import { ThemeCtx } from '../../utils/ThemeCtx';
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import './newPassword.css';
 
 export default function NewPassword() {
     const { theme, toggleTheme } = useContext(ThemeCtx);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const submitForm = (data) => {
-        console.log(data);
-    };
     const password = watch('pass');
     const passwordConfirm = watch('passComf');
     return (
