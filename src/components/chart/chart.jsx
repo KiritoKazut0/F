@@ -7,7 +7,7 @@ export default function Chart({
     categories = [],
     data = [],
     symbolSize = (dataItem) => dataItem[1] * 4,
-    title = "Gráfico de Datos"
+    title
 }) {
     const { theme } = useContext(ThemeCtx);
     const series = [];
@@ -75,8 +75,6 @@ export default function Chart({
     };
 
     return (
-        <div style={{ height: "100%", width: "100%" }}>
-            <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
-        </div>
+        <ReactECharts option={option} style={{ height: "350px", width: "100%", margin: '10px 0' }} />
     );
 }
