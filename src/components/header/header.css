@@ -7,16 +7,9 @@
     justify-content: flex-start;
 }
 
-.HeaderClass .icons {
-    display: flex;
-    margin: 0 5%;
+.HeaderClass .LightNightBtn {
+    margin: 0 10px;
 }
-
-.HeaderClass .icons .constainerHeader {
-    display: flex;
-    margin: 0 20px;
-}
-
 .HeaderClassDark {
     color: white;
     box-shadow: inset 0px -1px 0 #4a4a4a;

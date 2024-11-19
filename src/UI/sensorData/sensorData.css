@@ -1,0 +1,28 @@
+.SensorDataClass {
+    width: 20%;
+    height: 80%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    .legend {
+        font-size: 15px;
+        width: 100%;
+        margin: 0 0 0 10%;
+    }
+
+    .valuesTend {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .values {
+            font-size: 30px;
+        }
+    }
+}

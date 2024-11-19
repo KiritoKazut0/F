@@ -12,11 +12,11 @@
     .userTag {
         width: 40px;
         height: 40px;
-        margin: 0 5%;
+        margin: 0 0 0 5%;
+        font-size: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgb(255, 72, 72);
         border-radius: 100px;
     }
 }

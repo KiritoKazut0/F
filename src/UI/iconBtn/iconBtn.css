@@ -10,14 +10,15 @@
     cursor: pointer;
     color: #535353;
     background: none;
+    transition: .2s;
+}
+
+.iconBtnClass:hover {
+    background: #00000022;
 }
 
 .iconBtnClassLight {
     background: none;
-}
-
-.iconBtnClassLight:hover {
-    background: #dbdbdb;
 }
 
 .iconBtnClassDark {

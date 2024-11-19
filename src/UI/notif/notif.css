@@ -1,0 +1,24 @@
+.notifClass {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2 {
+        height: 100%;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    p {
+        width: 60%;
+    }
+}
+
+.notifClass:hover {
+    background: #00000022;
+}
