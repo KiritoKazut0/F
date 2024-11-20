@@ -1,5 +1,5 @@
 import './dashboard.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getRandomColor } from '../../utils/tools';
 import { useContext } from 'react';
@@ -14,6 +14,10 @@ import { getStadistica } from '../../service/statistics';
 
 export default function Dashboard() {
     const { dataSensors } = useContext(WebsocketContext)
+    const [hidrogen, setHidrogen] = useState([])
+    const [ph, setPh] = useState([])
+    const [oxygen, setOxygen] = useState([])
+    const [temp, setTemp] = useState([])
     const { theme } = useContext(ThemeCtx);
 
     const { register, watch } = useForm({
@@ -26,13 +30,10 @@ export default function Dashboard() {
 
     // Log the selected timeframe whenever it changes
     useEffect(() => {
-        document.title = "Dashboard";
-   
         const timeframe = parseInt(selectedTimeframe);
         switch (timeframe) {
 
             case 1:
-
                 break;
 
             case 2:
@@ -69,6 +70,25 @@ export default function Dashboard() {
 
     }, [selectedTimeframe]);
 
+    useEffect(() => {
+        document.title = "Dashboard";
+    
+        // Crear copias de los datos previos y agregar los nuevos valores
+        const newHidrogen = [...hidrogen, dataSensors?.hidrogen].slice(-4);
+        const newPh = [...ph, dataSensors?.ph].slice(-4);
+        const newOxygen = [...oxygen, dataSensors?.oxygen].slice(-4);
+        const newTemp = [...temp, dataSensors?.temperature].slice(-4);
+    
+        // Actualizar los estados con los nuevos valores
+        setHidrogen(newHidrogen);
+        setPh(newPh);
+        setOxygen(newOxygen);
+        setTemp(newTemp);
+    
+        console.log(newHidrogen);  // Esto mostrará el nuevo estado
+    }, [dataSensors]);
+    
+
     return (
         <div className={`DashBoardClass`}>
             <LateralMenu />
@@ -88,10 +108,10 @@ export default function Dashboard() {
                         timeRange={["Min 1", "Min 2", "Min 3", "Min 4", "Min 5"]}
                         categories={["Hidrogeno", "PH", "Oxígeno", "Temperatura"]}
                         data={[
-                            [0, 0, 100], [0, 1, 0], [0, 2, 1], [0, 3, 20],
-                            [1, 0, 1000], [1, 1, 500], [1, 2, 3000], [1, 3, 10],
-                            [2, 0, 10], [2, 1, 9], [2, 2, 8], [2, 3, 10],
-                            [3, 0, 10], [3, 1, 5], [3, 2, 3], [3, 3, 10],
+                            [0, 0, hidrogen[0]], [0, 1, hidrogen[1]], [0, 2, hidrogen[2]], [0, 3, hidrogen[3]],
+                            [1, 0, temp[0]], [1, 1, temp[1]], [1, 2, temp[2]], [1, 3, temp[3]],
+                            [2, 0, ph[0]], [2, 1, ph[1]], [2, 2, ph[2]], [2, 3, ph[3]],
+                            [3, 0, oxygen[0]], [3, 1, oxygen[1]], [3, 2, oxygen[2]], [3, 3, oxygen[3]],
                         ]} />
                 </div>
                 <div className='ChartClass'>

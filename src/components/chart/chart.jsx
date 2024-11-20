@@ -33,12 +33,13 @@ export default function Chart({
     });
 
     categories.forEach((_category, idx) => {
+        // Ajustar el top y el height para que se apilen verticalmente
         singleAxis.push({
             type: "category",
             boundaryGap: false,
             data: timeRange,
-            top: `${(idx * 100) / categories.length + 5}%`,
-            height: `${100 / categories.length - 10}%`,
+            top: `${(idx * 100) / categories.length}%`, // Distribuir de forma equitativa
+            height: `${100 / categories.length}%`, // Ajustar el tamaño de cada gráfico
             axisLabel: {
                 interval: 2
             }
@@ -58,9 +59,15 @@ export default function Chart({
             position: "top",
             formatter: (params) => {
                 const categoryIndex = params.data[0];
-                const categoryName = categories[categoryIndex];
-                const originalValue = params.data[2];
-                return `${categoryName}: ${originalValue}`;
+                const values = normalizedData[categoryIndex];
+                let tooltipContent = `<div style="display: flex; flex-direction: column;">`;
+                values.forEach((value, index) => {
+                    const time = value[0];
+                    const originalValue = value[2];
+                    tooltipContent += `<div>${time}: ${originalValue}</div>`;
+                });
+                tooltipContent += `</div>`;
+                return tooltipContent;
             }
         },
         title: {
