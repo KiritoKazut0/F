@@ -1,5 +1,6 @@
 import './dashboard.css';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { getRandomColor } from '../../utils/tools';
 import { useContext } from 'react';
 import { ThemeCtx } from '../../utils/ThemeCtx';
@@ -8,12 +9,65 @@ import Header from '../../components/header/header';
 import Notifications from '../../components/notifications/notifications';
 import SensorData from '../../UI/sensorData/sensorData';
 import Chart from '../../components/chart/chart';
+import { WebsocketContext } from '../../context/SocketContext';
+import { getStadistica } from '../../service/statistics';
 
 export default function Dashboard() {
+    const { dataSensors } = useContext(WebsocketContext)
     const { theme } = useContext(ThemeCtx);
+
+    const { register, watch } = useForm({
+        defaultValues: {
+            predictionTimeframe: '1' // default to Hour
+        }
+    });
+
+    const selectedTimeframe = watch('predictionTimeframe');
+
+    // Log the selected timeframe whenever it changes
     useEffect(() => {
         document.title = "Dashboard";
-    }, []);
+   
+        const timeframe = parseInt(selectedTimeframe);
+        switch (timeframe) {
+
+            case 1:
+
+                break;
+
+            case 2:
+
+            console.log('Selected Timeframe:', selectedTimeframe);
+
+                const getCurrentDayDateRange = () => {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0); 
+                    const startDate = today.toISOString();
+
+                    today.setHours(23, 59, 59, 999);
+                    const endDate = today.toISOString();
+
+                    return { startDate, endDate };
+                };
+
+            const {endDate, startDate} = getCurrentDayDateRange();
+
+                getStadistica({
+                    typeSensors: ['temperature', 'ph', 'oxigen', 'hydrogen'],
+                    endDate,
+                    startDate,
+                    typeFilter: "days"
+                });
+
+                break;
+
+            case 3:
+                break;
+
+        }
+
+
+    }, [selectedTimeframe]);
 
     return (
         <div className={`DashBoardClass`}>
@@ -22,10 +76,10 @@ export default function Dashboard() {
                 <Header />
                 <div className='SensorDatas'>
                     <p style={{ width: '95%', margin: '10px 0', fontSize: '14px' }}>Estadísticas</p>
-                    <SensorData background={getRandomColor()} legend="Hidrogeno" value={10} sub='H2' tendence={2.01} />
-                    <SensorData background={getRandomColor()} legend="PH" value={7} sub="pH" tendence={-22.03} />
-                    <SensorData background={getRandomColor()} legend="Oxígeno" value={42} sub='mg/L' tendence={10.07} />
-                    <SensorData background={getRandomColor()} legend="Temperatura" value={26.3} sub='°C' tendence={2.01} />
+                    <SensorData background={getRandomColor()} legend="Hidrogeno" value={dataSensors.hidrogen} sub='H2' tendence={2.01} />
+                    <SensorData background={getRandomColor()} legend="PH" value={dataSensors.ph} sub="pH" tendence={7.2} />
+                    <SensorData background={getRandomColor()} legend="Oxígeno" value={dataSensors.oxygen} sub='mg/L' tendence={10.07} />
+                    <SensorData background={getRandomColor()} legend="Temperatura" value={dataSensors.temperature} sub='°C' tendence={2.01} />
                 </div>
                 <div className='ChartClass realTime'>
                     <p style={{ margin: '10px 15px' }}>Datos de producción y monitoreo en tiempo real</p>
@@ -43,11 +97,14 @@ export default function Dashboard() {
                 <div className='ChartClass'>
                     <div className='PredictionsClass'>
                         <p>Prediciones por</p>
-                        <select style={{color: theme === "dark" && "white"}}>
-                            <option style={{color: theme === "dark" && "black"}} value='1'>Hora</option>
-                            <option style={{color: theme === "dark" && "black"}} value='2'>Día</option>
-                            <option style={{color: theme === "dark" && "black"}} value='3'>Semana</option>
-                            <option style={{color: theme === "dark" && "black"}} value='4'>Mes</option>
+                        <select
+                            {...register('predictionTimeframe')}
+                            style={{ color: theme === "dark" && "white" }}
+                        >
+                            <option style={{ color: theme === "dark" && "black" }} value='1'>Hora</option>
+                            <option style={{ color: theme === "dark" && "black" }} value='2'>Día</option>
+                            <option style={{ color: theme === "dark" && "black" }} value='3'>Semana</option>
+                            <option style={{ color: theme === "dark" && "black" }} value='4'>Mes</option>
                         </select>
                     </div>
                     <Chart

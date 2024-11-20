@@ -16,6 +16,7 @@ export default function RecupCont() {
     const onSubmit = (data) => {
         console.log("Datos del formulario:", data);
         localStorage.setItem('email', data.email);
+        
     };
     return (
         <div className='RecupContClass'>

@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode"
-export const endPoint = "https://39b3-2806-10ae-f-b24e-216f-4fd8-8e88-3321.ngrok-free.app"
+export const endPoint = "https://h2biocontrolapi.integrador.xyz/api"
 
 export const decodeToken = () => {
     const token = localStorage.getItem('token');

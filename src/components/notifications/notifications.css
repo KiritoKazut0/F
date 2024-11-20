@@ -1,13 +1,22 @@
 .notificationsClass {
-    width: 15%;
+    width: 16%;
+    padding: 0 1%;
     height: 100%;
 
     h5 {
-        color: #7d7d7d;
-        width: 100%;
-        text-align: center;
-        margin: 5px 0;
+        margin: 5% 10%;
+        width: 80%;
     }
+}
+
+.plants-registers {
+    width: 100%;
+    height: 30%;
+}
+
+.Alerts{
+    width: 100%;
+    height: 30%;
 }
 
 .notNight {
@@ -16,4 +25,5 @@
 
 .notLight {
     box-shadow: inset 1px 0px 0 #cacaca;
+   
 }

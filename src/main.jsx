@@ -9,7 +9,19 @@ import RecupCont from './pages/recupCont/recupCont';
 import NewPassword from './pages/newPassword/newPassword';
 import VerifyCode from './pages/verifyCode/verifyCode';
 import { ThemeProvider } from './utils/ThemeCtx';
+import { WebsocketProvider } from './context/SocketContext';
 import './index.css';
+
+const WebsocketLayout = () => {
+  return (
+    <WebsocketProvider>
+      <div className="Home-layout">
+        <Dashboard/>
+      </div>
+    </WebsocketProvider>
+  )
+}
+
 
 const router = createBrowserRouter([
   {
@@ -26,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <VeryfyUser element={<Dashboard />} route='/'/>,
+    element: <VeryfyUser element={<WebsocketLayout />} route='/'/>,
   }, 
   {
     path: '/newPassword',
